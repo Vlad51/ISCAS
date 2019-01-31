@@ -1,0 +1,9 @@
+Результаты моделирования в Quartus тестовой схемы c432 ISCAS-85.
+с432.txt - этот файл.
+ISCAS-85 C432.pdf - описание контроллера из источника в сети.
+c432.png - скриншот схемы, полученной в результате компиляции в Quartus.
+c432.v - модель цифрового устройства c432 на языке Verilog.
+c432 Verilog hierarchical structural model.v - иерархическая структурная модель c432 на языке Verilog.
+c432 Verilog hierarchical behavioral model.v - иерархическая  модель поведения c432 на языке Verilog.
+c432 complete gate-level tests.tests - фукциональный тест c432.
+папка Modul - папка с моделями 4 модулей на языке Verilog, входящих в c432.
