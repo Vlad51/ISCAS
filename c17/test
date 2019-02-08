@@ -1,0 +1,89 @@
+#! c:/iverilog-x64/bin/vvp
+:ivl_version "10.1 (stable)" "(v10_1_1)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_000000000002db70 .scope module, "test_c17_1" "test_c17_1" 2 7;
+ .timescale -9 -12;
+v0000000001e20f90_0 .var "tN1", 0 0;
+v0000000001e206d0_0 .var "tN2", 0 0;
+v0000000001e20e50_0 .net "tN22", 0 0, L_0000000001e21f80;  1 drivers
+v0000000001e20770_0 .net "tN23", 0 0, L_0000000001e23000;  1 drivers
+v0000000001e20810_0 .var "tN3", 0 0;
+v0000000001e20c70_0 .var "tN6", 0 0;
+v0000000001e212b0_0 .var "tN7", 0 0;
+S_000000000002dcf0 .scope begin, "test" "test" 2 13, 2 13 0, S_000000000002db70;
+ .timescale -9 -12;
+v0000000001dcda30_0 .var/i "i", 31 0;
+S_0000000001dcf000 .scope module, "ts" "c17" 2 11, 3 8 0, S_000000000002db70;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "N1"
+    .port_info 1 /INPUT 1 "N2"
+    .port_info 2 /INPUT 1 "N3"
+    .port_info 3 /INPUT 1 "N6"
+    .port_info 4 /INPUT 1 "N7"
+    .port_info 5 /OUTPUT 1 "N22"
+    .port_info 6 /OUTPUT 1 "N23"
+L_0000000001dcc370 .functor NAND 1, v0000000001e20f90_0, v0000000001e20810_0, C4<1>, C4<1>;
+L_0000000001dcc250 .functor NAND 1, v0000000001e20810_0, v0000000001e20c70_0, C4<1>, C4<1>;
+L_0000000001e21ea0 .functor NAND 1, v0000000001e206d0_0, L_0000000001dcc250, C4<1>, C4<1>;
+L_0000000001e21f10 .functor NAND 1, L_0000000001dcc250, v0000000001e212b0_0, C4<1>, C4<1>;
+L_0000000001e21f80 .functor NAND 1, L_0000000001dcc370, L_0000000001e21ea0, C4<1>, C4<1>;
+L_0000000001e23000 .functor NAND 1, L_0000000001e21ea0, L_0000000001e21f10, C4<1>, C4<1>;
+v000000000002de70_0 .net "N1", 0 0, v0000000001e20f90_0;  1 drivers
+v0000000001dcf180_0 .net "N10", 0 0, L_0000000001dcc370;  1 drivers
+v0000000001dcf220_0 .net "N11", 0 0, L_0000000001dcc250;  1 drivers
+v0000000001dcf2c0_0 .net "N16", 0 0, L_0000000001e21ea0;  1 drivers
+v0000000001dcf360_0 .net "N19", 0 0, L_0000000001e21f10;  1 drivers
+v0000000001dcf400_0 .net "N2", 0 0, v0000000001e206d0_0;  1 drivers
+v0000000001dcf4a0_0 .net "N22", 0 0, L_0000000001e21f80;  alias, 1 drivers
+v0000000001e204a0_0 .net "N23", 0 0, L_0000000001e23000;  alias, 1 drivers
+v0000000001e20540_0 .net "N3", 0 0, v0000000001e20810_0;  1 drivers
+v0000000001e205e0_0 .net "N6", 0 0, v0000000001e20c70_0;  1 drivers
+v0000000001e20a90_0 .net "N7", 0 0, v0000000001e212b0_0;  1 drivers
+    .scope S_000000000002db70;
+T_0 ;
+    %fork t_1, S_000000000002dcf0;
+    %jmp t_0;
+    .scope S_000000000002dcf0;
+t_1 ;
+    %vpi_call 2 15 "$display", "\320\345\347\363\353\374\362\340\362\373 \354\356\344\345\353\350\360\356\342\340\355\350\377 ISCAS-85 c17:" {0 0 0};
+    %vpi_call 2 16 "$timeformat", 32'sb11111111111111111111111111110111, 32'sb00000000000000000000000000000001, "ns", 32'sb00000000000000000000000000001000 {0 0 0};
+    %vpi_call 2 17 "$monitor", $time, ": N1=%b N2=%b N3=%b N6=%b N7t=%b N22=%b N23=%b", v0000000001e20f90_0, v0000000001e206d0_0, v0000000001e20810_0, v0000000001e20c70_0, v0000000001e212b0_0, v0000000001e20e50_0, v0000000001e20770_0 {0 0 0};
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0000000001dcda30_0, 0, 32;
+T_0.0 ;
+    %load/vec4 v0000000001dcda30_0;
+    %cmpi/s 32, 0, 32;
+    %jmp/0xz T_0.1, 5;
+    %delay 10000, 0;
+    %load/vec4 v0000000001dcda30_0;
+    %pad/s 5;
+    %split/vec4 1;
+    %store/vec4 v0000000001e212b0_0, 0, 1;
+    %split/vec4 1;
+    %store/vec4 v0000000001e20c70_0, 0, 1;
+    %split/vec4 1;
+    %store/vec4 v0000000001e20810_0, 0, 1;
+    %split/vec4 1;
+    %store/vec4 v0000000001e206d0_0, 0, 1;
+    %store/vec4 v0000000001e20f90_0, 0, 1;
+    %load/vec4 v0000000001dcda30_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0000000001dcda30_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ;
+    %end;
+    .scope S_000000000002db70;
+t_0 %join;
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "c17test.v";
+    "c17.v";
